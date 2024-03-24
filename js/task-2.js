@@ -21,5 +21,3 @@ const newImages = images
   )
   .join("");
 gallery.insertAdjacentHTML("beforeend", newImages);
-const items = document.querySelectorAll(".item");
-items.map();
