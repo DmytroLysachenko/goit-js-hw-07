@@ -4,23 +4,46 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
+const controlBox = document.querySelector("div#controls");
 const divBoxes = document.querySelector("div#boxes");
 const input = document.querySelector("input");
 const createButton = document.querySelector("button[data-create]");
 const destroyButton = document.querySelector("button[data-destroy]");
+
+let msgBox = document.createElement("p");
+controlBox.prepend(msgBox);
+msgBox.style.position = "absolute";
+msgBox.style.color = "red";
+msgBox.style.padding = "2px 4px";
+msgBox.style.top = "14px";
+msgBox.style.borderRadius = "5px";
+msgBox.style.fontSize = "14px";
+msgBox.style.backgroundColor = "LightGray";
+msgBox.style.display = "none";
+
+msgBox.textContent = "Wrong value, please type number from 1 to 100";
+
+controlBox.style.position = "relative";
+
+msgBox = document.querySelector("div#controls p");
+
 function createBoxes(event) {
+  let inputValue = Number(input.value);
   divBoxes.innerHTML = "";
-  if (input.value < 1 || input.value > 100) {
+  console.log(inputValue);
+  if (inputValue > 0 && inputValue < 101 && typeof inputValue === "number") {
+    for (let index = 0; index < inputValue; index++) {
+      msgBox.style.display = "none";
+      divBoxes.append(document.createElement("div"));
+      divBoxes.lastChild.style.backgroundColor = getRandomHexColor();
+      divBoxes.lastChild.style.width = `${30 + index * 10}px`;
+      divBoxes.lastChild.style.height = `${30 + index * 10}px`;
+    }
     input.value = "";
-    return alert("Please type number from 1 to 100");
+  } else {
+    msgBox.style.display = "block";
+    input.value = "";
   }
-  for (let index = 0; index < input.value; index++) {
-    divBoxes.insertAdjacentHTML("beforeend", "<div></div>");
-    divBoxes.lastChild.style.backgroundColor = getRandomHexColor();
-    divBoxes.lastChild.style.width = `${30 + index * 10}px`;
-    divBoxes.lastChild.style.height = `${30 + index * 10}px`;
-  }
-  input.value = "";
 }
 
 function destroyBoxes() {
