@@ -15,7 +15,7 @@ controlBox.prepend(msgBox);
 msgBox.style.position = "absolute";
 msgBox.style.color = "red";
 msgBox.style.padding = "2px 4px";
-msgBox.style.top = "14px";
+msgBox.style.top = "100%";
 msgBox.style.borderRadius = "5px";
 msgBox.style.fontSize = "14px";
 msgBox.style.backgroundColor = "LightGray";
